@@ -8,6 +8,26 @@ public class HelloServlet extends HttpServlet {
                                                    throws IOException, ServletException {
         res.setContentType("text/html");
         PrintWriter out = res.getWriter();
-        out.println("<html><body>Hello HelloServlet.javaで書いたhtmlの中身が表示されてるよ!</body></html>");
+        
+        //htmlとして表示
+        out.println("<html><body>");
+        
+        //文字列をブラウザに出力
+        out.println("Hello (HelloServlet.java) <br>");
+        
+        //HttpServletRequest reqの中身を見るためにコードを記載
+        out.println("req.getRequestURL:" +  req.getRequestURL() +  "<br>");
+        out.println("req.getMethod:" +  req.getMethod() +  "<br>");
+        
+        //HttpServletResponse　resの中身を見るためにコードを記載
+        out.println("res.getContentType:" + res.getContentType() + "<br>");
+       
+        out.println("</body></html>");
+        
+        //リダイレクトを行いたいときの処理 使いたい場合はコメントを外すこと
+        //res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+        //res.setHeader("Location", "http://localhost:8080/hello/");
+        
+       
     }
 }
