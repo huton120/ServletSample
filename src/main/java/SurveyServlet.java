@@ -2,7 +2,7 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-public class HelloServlet extends HttpServlet {
+public class SurveyServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
                                                    throws IOException, ServletException {
@@ -12,10 +12,14 @@ public class HelloServlet extends HttpServlet {
         //htmlとして表示
         out.println("<html><body>");
         
-        //文字列をブラウザに出力
-        out.println("Hello (HelloServlet.java) <br>");
+        //HttpServletRequest reqの中身を見るためにコードを記載
+        out.println("req.getRequestURL:" +  req.getRequestURL() +  "<br>");
+        out.println("req.getMethod:" +  req.getMethod() +  "<br>");
         
+        //HttpServletResponse　resの中身を見るためにコードを記載
+        out.println("res.getContentType:" + res.getContentType() + "<br>");
+       
         out.println("</body></html>");
-        
+
     }
 }

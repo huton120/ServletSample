@@ -6,13 +6,44 @@
                       http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
   version="3.0">
 
+  <!-- Web.xmlにはアプリケーションの設定を書きます -->
+  
+  <!-- サーブレットを定義する -->
   <servlet>
-      <servlet-name>hello-servlet</servlet-name>
-      <servlet-class>HelloServlet</servlet-class>
+      <servlet-name>hello-servlet</servlet-name><!-- サーブレット名を定義する -->
+      <servlet-class>HelloServlet</servlet-class><!-- 対応するJavaクラス名を定義する -->
   </servlet>
+  <servlet>
+      <servlet-name>redirect-servlet</servlet-name><!-- サーブレットが複数ある場合はこのように新たにservletタグを追加する必要がある -->
+      <servlet-class>RedirectServlet</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>survey-servlet</servlet-name>
+      <servlet-class>SurveyServlet</servlet-class>
+  </servlet>
+  
+  <!-- サーブレットとリクエストURLのマッピングを定義する リクエストURL:クライアントがサーバーに対してリクエストを送る際に使用するURL -->
   <servlet-mapping>
-      <servlet-name>hello-servlet</servlet-name>
-      <url-pattern>/hello</url-pattern>
+      <servlet-name>hello-servlet</servlet-name><!-- サーブレット名を定義する servletタグの中のservlet-nameに対応させること。ここではhttp://ホスト名/hello/hello を打ち込んだ際、HelloServlet.classが起動する -->
+      <url-pattern>/hello</url-pattern><!-- URLパターンを定義する URLパターン:サーブレットにマッチングさせるリクエストURLを定義するもの。ここではhttp://ホスト名/hello/hello を打ち込めば、hello-servletに対応したサーブレットクラスが起動することを表す-->
   </servlet-mapping>
-
+  <servlet-mapping>
+      <servlet-name>redirect-servlet</servlet-name>
+      <url-pattern>/redirect</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>survey-servlet</servlet-name>
+      <url-pattern>/survey</url-pattern>
+  </servlet-mapping>
+  
+  <!-- エラーページへの遷移を定義する エラーが発生した場合、対応したページに遷移させることができる-->
+  <error-page>
+      <error-code>404</error-code>
+      <location>/error/error_404.html</location>
+  </error-page>
+  
+  <!-- welcomeページに設定しているので、URLを打ち込んだ時に、ファイル名が省かれ、末尾が/だと、このページが一番先に表示されます。-->
+  <welcome-file-list>
+      <welcome-file>/welcome/welcome.html</welcome-file>
+  </welcome-file-list>
 </web-app>
